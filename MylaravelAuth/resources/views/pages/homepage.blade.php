@@ -6,7 +6,11 @@
       <div class="col-12">
        {{-- Pilot <-N----M-> Car <-N----1-> Brand --}}
        @foreach ($cars as  $car)
-         <h1>Car:</h1>
+         <h1>Car:
+           <a class="icon" href="{{route('edit', $car -> id)}}">
+             &#9998;
+           </a>
+         </h1>
          <h4>Id -->{{$car -> id}}</h4>
          <h4>Name -->{{$car -> name}}</h4>
          <h4>Model -->{{$car -> model}}</h4>
@@ -21,6 +25,8 @@
            <h4>{{$pilot -> name}} {{$pilot -> lastname}} {{$pilot -> nationality}} {{$pilot -> date_of_birth}}</h4>
          @endforeach
          <br>
+         <br>
+         <p>-----------------------------------------------------------------------------</p>
          <br>
          <br>
        @endforeach

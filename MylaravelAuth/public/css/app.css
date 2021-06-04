@@ -10946,3 +10946,13 @@ body {
   background-color: coral;
 }
 
+a,
+a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.icon {
+  font-size: 30px;
+}
+

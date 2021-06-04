@@ -23,3 +23,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/homepage', 'TestController@homepage')
      ->name('homepage');
+
+
+//modified
+Route::get('edit/car/{id}', 'TestController@edit')
+        -> name('edit');
+Route::post('update/car/{id}', 'TestController@update')
+      -> name('update');
