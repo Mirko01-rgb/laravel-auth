@@ -10,6 +10,9 @@
            <a class="icon" href="{{route('edit', $car -> id)}}">
              &#9998;
            </a>
+           <a class='icon' href="{{route('destroy', $car -> id)}}">
+             &#10060;
+           </a>
          </h1>
          <h4>Id -->{{$car -> id}}</h4>
          <h4>Name -->{{$car -> name}}</h4>

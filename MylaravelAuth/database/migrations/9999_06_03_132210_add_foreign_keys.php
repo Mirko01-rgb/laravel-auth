@@ -18,6 +18,7 @@ class AddForeignKeys extends Migration
         $table -> foreign('brand_id', 'brandcar')
         -> references('id')
         -> on('brands');
+        //-> onDelete('cascade');
       });
 
       //many to many
@@ -25,9 +26,11 @@ class AddForeignKeys extends Migration
         $table -> foreign('car_id', 'pilotcar')
         -> references('id')
         -> on('cars');
+        //-> onDelete('cascade');
         $table -> foreign('pilot_id', 'carpilot')
         -> references('id')
         -> on('pilots');
+        // -> onDelete('cascade');
       });
     }
 

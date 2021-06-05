@@ -18,9 +18,10 @@ class CreateCarsTable extends Migration
         $table -> string('name');
         $table -> bigInteger('model');
         $table -> bigInteger('kw');
+        $table -> boolean('deleted') -> default(false);
 
         //one to many
-        $table -> bigInteger('brand_id') -> unsigned() -> index(); 
+        $table -> bigInteger('brand_id') -> unsigned() -> index();
 
         $table->timestamps();
       });

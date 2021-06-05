@@ -25,8 +25,13 @@ Route::get('/homepage', 'TestController@homepage')
      ->name('homepage');
 
 
-//modified
-Route::get('edit/car/{id}', 'TestController@edit')
+//EDIT
+Route::get('edit/car/{id}', 'LoggedController@edit')
         -> name('edit');
-Route::post('update/car/{id}', 'TestController@update')
+Route::post('update/car/{id}', 'LoggedController@update')
       -> name('update');
+
+
+//DELETE
+Route::get('destroy/{id}', 'LoggedController@destroy')
+        -> name('destroy');
