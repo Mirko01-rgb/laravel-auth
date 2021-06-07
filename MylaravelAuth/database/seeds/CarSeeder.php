@@ -12,7 +12,7 @@ class CarSeeder extends Seeder
      */
     public function run()
     {
-      factory(Car::class, 500)
+      factory(Car::class, 200)
               -> make()
               -> each(function($car) {
 

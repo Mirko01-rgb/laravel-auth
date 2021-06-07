@@ -1,5 +1,4 @@
 @extends('layouts.main-layout')
-@extends('layouts.main-layout')
 @section('content')
   <div class="container text-center">
     <div class="row">
@@ -18,6 +17,11 @@
          <h4>Name -->{{$car -> name}}</h4>
          <h4>Model -->{{$car -> model}}</h4>
          <h4>Kw-->{{$car -> kw}}</h4>
+        
+         @if ($car -> img)
+           <img src="{{ asset('storage/car-img/' . $car -> img) }}" alt="foto">
+
+         @endif
 
          <h3>Brand</h3>
          <h4>Id -->{{$car -> brand -> id}}</h4>

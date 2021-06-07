@@ -1,10 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 use App\Car;
 use App\Brand;
 use App\Pilot;
-use Illuminate\Http\Request;
+
+use App\Mail\NewCarNotify;
 
 class LoggedController extends Controller
 {
@@ -35,11 +41,33 @@ class LoggedController extends Controller
 
     //Brand
     $car -> brand() -> associate($brand);
-    $car -> save();
+    $car -> save();         //per passarlo al database
 
     //Pilot
     $car -> pilots() -> attach($request -> get('pilot_id'));
     $car -> save();
+
+    //mail
+    $user = Auth::user();     //utente loggato
+    Mail::to('test@mail.com')->send(new NewCarNotify($car));
+    Mail::to($user -> email)->send(new NewCarNotify($car));
+
+    //image
+    $img = $request -> file('image');
+    //dd($img);
+    $imgExt = $img ->getClientOriginalExtension();
+    //dd($img, $imgExt);
+    $imgNewName = time() . rand(0, 1000) . '.' . $imgExt;
+    //$imgNewName = time() . '_car-img.' . $imgExt;
+    //dd($img, $imgExt, $imgNewName);
+    $folder = '/car-img/';
+    $imgFile = $img -> storeAs($folder, $imgNewName, 'public');
+    //dd($img, $imgExt, $imgNewName, $imgFile);
+    $car -> img= $imgNewName;
+    $car -> save();                //per passarlo al database
+    //dd($car);
+
+
     return redirect() -> route('homepage');
   }
 
@@ -69,7 +97,7 @@ class LoggedController extends Controller
     $car -> brand() -> associate($request -> brand_id);
     // dd($car);
     $car -> save();
-    // dd($car);
+    //dd($car);
 
     $car -> pilots() -> sync($request -> pilot_id);          //asfalta tutto attach(aggiunge)
     return redirect() -> route('homepage');

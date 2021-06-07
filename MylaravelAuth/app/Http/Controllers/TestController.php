@@ -11,9 +11,7 @@ class TestController extends Controller
 {
   public function homepage(){
     //$cars = Car::all();
-
-
-     $cars = Car::where('deleted', false) -> get();
+    $cars = Car::where('deleted', false) -> get();
     return view('pages.homepage', compact('cars'));
   }
 

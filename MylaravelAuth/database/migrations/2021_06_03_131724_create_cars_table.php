@@ -20,6 +20,9 @@ class CreateCarsTable extends Migration
         $table -> bigInteger('kw');
         $table -> boolean('deleted') -> default(false);
 
+        //image
+        $table -> string('img') -> nullable();
+
         //one to many
         $table -> bigInteger('brand_id') -> unsigned() -> index();
 
