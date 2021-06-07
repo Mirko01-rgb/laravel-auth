@@ -9,6 +9,9 @@
         <a class="btn btn-primary mb-5" href="{{route('home')}}">
           Login/Logout
         </a>
+        <a class="btn btn-primary mb-5" href="{{route('create')}}">
+          Create New Car
+        </a>
 
         <div id="app">
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -77,7 +80,7 @@
 
 
 
-        
+
       </div>
     </div>
   </div>

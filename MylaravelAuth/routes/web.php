@@ -24,6 +24,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/homepage', 'TestController@homepage')
      ->name('homepage');
 
+//Create
+Route::get('/create', 'LoggedController@create')
+      -> name('create');
+Route::post('/store/car', 'LoggedController@storeCar')
+      -> name('store');
 
 //EDIT
 Route::get('edit/car/{id}', 'LoggedController@edit')

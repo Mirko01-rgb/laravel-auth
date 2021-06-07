@@ -12,6 +12,40 @@ class LoggedController extends Controller
     $this -> middleware('auth');
   }
 
+  //create
+  public function create(){
+    $brands = Brand::all();
+
+    $pilots = Pilot::all();
+    return view('pages.create', compact('brands', 'pilots'));
+  }
+
+
+  public function storeCar(Request $request) {
+    //dd($request -> all());
+    $validate = $request -> validate([
+      'name' => 'required|string|min:3',
+      'model' => 'required|integer',
+      'kw' => 'required|integer|min:10|max:3000',
+    ]);
+
+    $brand = Brand::findOrFail($request -> get('brand_id'));
+    //dd($brand);
+    $car = Car::make($validate);
+
+    //Brand
+    $car -> brand() -> associate($brand);
+    $car -> save();
+
+    //Pilot
+    $car -> pilots() -> attach($request -> get('pilot_id'));
+    $car -> save();
+    return redirect() -> route('homepage');
+  }
+
+
+
+  //Edit
   public function edit($id) {
    $car = Car::findOrFail($id);
 
@@ -42,7 +76,7 @@ class LoggedController extends Controller
   }
 
 
-
+  //Delete
   public function destroy($id) {
     //dd($id);
     $car = Car::findOrFail($id);
